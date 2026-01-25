@@ -16,3 +16,32 @@ Planner Lite es una aplicación de planificación de tareas simple, inspirada en
 - [ ] Frontend
 - [ ] Docker
 - [ ] Kubernetes
+
+
+# Roadmap Planner Lite
+
+## Fase 1 - Backend
+- [ ] Servidor Express
+- [ ] Modelo Task
+- [ ] CRUD básico
+- [ ] Filtros y ordenación
+- [ ] Health check
+
+## Fase 2 - Frontend
+- [ ] UI básica
+- [ ] Listado de tareas
+- [ ] Crear / actualizar / borrar
+
+## Fase 3 - Contenedores
+- [ ] Dockerfile backend
+- [ ] Dockerfile frontend
+- [ ] docker-compose
+
+## Fase 4 - Kubernetes
+- [ ] Manifests básicos
+- [ ] Services
+- [ ] Secrets
+- [ ] Deploy en Proxmox
+
+## Fase 5 - CI/CD
+- [ ] GitHub Actions
