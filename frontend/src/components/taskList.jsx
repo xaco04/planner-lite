@@ -1,4 +1,5 @@
 import { api } from '../api';
+import { ListGroup, Button } from 'react-bootstrap';
 
 export default function TaskList({ tasks, refresh }) {
 
@@ -14,21 +15,18 @@ export default function TaskList({ tasks, refresh }) {
   };
 
   return (
-    <ul>
+    <ListGroup>
       {tasks.map(task => (
-        <li key={task._id}>
+        <ListGroup.Item key={task._id} className="d-flex justify-content-between align-items-center">
           <span
-            style={{
-              textDecoration: task.status === 'done' ? 'line-through' : 'none',
-              cursor: 'pointer'
-            }}
+            style={{ cursor: 'pointer', textDecoration: task.status === 'done' ? 'line-through' : 'none' }}
             onClick={() => toggleStatus(task)}
           >
-            [{task.priority}] {task.title}
+            [{task.priority}] {task.title} - {task.status}
           </span>
-          <button onClick={() => handleDelete(task._id)}>Borrar</button>
-        </li>
+          <Button variant="danger" size="sm" onClick={() => handleDelete(task._id)}>Borrar</Button>
+        </ListGroup.Item>
       ))}
-    </ul>
+    </ListGroup>
   );
 }
