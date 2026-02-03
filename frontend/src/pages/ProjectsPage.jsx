@@ -48,7 +48,14 @@ export default function ProjectsPage({ sidebarOnly }) {
         }
       />
 
-      <TaskList tasks={tasks} />
+      <TaskList
+        tasks={tasks}
+        refresh={() =>
+          api.get(`/tasks?projectId=${selected._id}`)
+            .then(res => setTasks(res.data))
+        }
+      />
+
     </>
   );
 }
