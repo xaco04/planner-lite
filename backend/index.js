@@ -34,17 +34,22 @@ app.get('/health', (req, res) => {  // req = la request (información de la peti
 // Listar tareas (opcionalmente filtradas por status y prioridad)
 app.get('/tasks', async (req, res) => {
   try {
-    const { status, priority } = req.query;
+    const { status, priority, projectId } = req.query;
     const filter = {};
+
     if (status) filter.status = status;
     if (priority) filter.priority = Number(priority);
+    if (projectId) filter.project = projectId; // 🔑 CLAVE
 
-    const tasks = await Task.find(filter).sort({ priority: 1, dueDate: 1 });
+    const tasks = await Task.find(filter)
+      .sort({ priority: 1, dueDate: 1 });
+
     res.json(tasks);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
+
 
 
 // Crear tarea
