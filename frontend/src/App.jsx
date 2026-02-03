@@ -1,17 +1,20 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Home from './pages/home';
-import Projects from './pages/projects';
-import Header from './components/header';
+import { Container, Row, Col } from 'react-bootstrap';
+import ProjectsPage from './pages/ProjectsPage';
 
 function App() {
   return (
-    <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/projects" element={<Projects />} />
-      </Routes>
-    </Router>
+    <Container fluid>
+      <Row>
+        <Col md={3} lg={2} className="bg-light vh-100 p-0">
+          {/* Sidebar */}
+          <ProjectsPage sidebarOnly />
+        </Col>
+
+        <Col md={9} lg={10} className="p-3">
+          <ProjectsPage />
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

@@ -1,6 +1,8 @@
 const express = require('express'); // framework para crear un servidor web en Node.js, manejar rutas, request, response etc...
 const cors = require('cors'); // middleware que permite que el backend acepte peticiones desde otro origen (por ejemplo el frontend en otro puerto)
 const mongoose = require('mongoose');
+const projectRoutes = require('./routes/projects');
+
 
 const app = express();
 const PORT = 5000;
@@ -15,6 +17,9 @@ mongoose.connect('mongodb://localhost:27017/planner-lite')
 // Middleware (funcion que se ejecuta cada vez que llega una request, use sirve para registrar middleware)
 app.use(express.json()); // Convierte los datos JSON que envía el cliente (frontend) en un objeto JS usable en tu backend.
 app.use(cors());
+
+
+app.use('/projects', projectRoutes);
 
 // ----------------------------
 //      RUTAS ENDPOINTS 
