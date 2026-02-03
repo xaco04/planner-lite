@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Row, Col } from 'react-bootstrap';
 import { api } from '../api';
 import Sidebar from '../components/Sidebar';
 import TaskForm from '../components/TaskForm';
 import TaskList from '../components/TaskList';
 
-export default function ProjectsPage({ sidebarOnly, projects, selected, setSelected }) {
+export default function ProjectsPage({ sidebarOnly, projects, selected, setSelected, setProjects }) {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
@@ -20,6 +19,7 @@ export default function ProjectsPage({ sidebarOnly, projects, selected, setSelec
         projects={projects}
         selectedId={selected?._id}
         onSelect={setSelected}
+        setProjects={setProjects} // permite que Sidebar actualice la lista
       />
     );
   }
@@ -46,4 +46,3 @@ export default function ProjectsPage({ sidebarOnly, projects, selected, setSelec
     </>
   );
 }
-

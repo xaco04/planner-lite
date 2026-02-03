@@ -23,6 +23,7 @@ function App() {
             projects={projects}
             selected={selected}
             setSelected={setSelected}
+            setProjects={setProjects}  
           />
         </Col>
 
@@ -31,6 +32,7 @@ function App() {
             projects={projects}
             selected={selected}
             setSelected={setSelected}
+            setProjects={setProjects} 
           />
         </Col>
       </Row>
