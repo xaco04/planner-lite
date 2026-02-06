@@ -1,0 +1,46 @@
+services:
+  mongo:
+    image: mongo:8.2.4
+    container_name: mongo
+    restart: always
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - planner-net
+    ports:
+      - "27017:27017"
+  
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    restart: always
+    environment:
+      PORT: 3000
+      MONGO_URI: mongodb://mongo:27017/planner-lite
+    networks:
+      - planner-net
+    ports:
+      - "3000:3000"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    restart: always
+    environment:
+      VITE_API_URL: http://backend:3000
+    networks:
+      - planner-net
+    ports:
+      - 3001:80
+
+networks:
+  planner-net:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    
