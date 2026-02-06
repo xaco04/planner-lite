@@ -5,12 +5,17 @@ const projectRoutes = require('./routes/projects');
 
 
 const app = express();
-const PORT = 5000;
+
+// Variables de los .env
+const PORT = process.env.PORT;
+const MONGO_URI = process.env.MONGO_URI
+
 
 const Task = require('./models/Task');
 
+
 // Conectar Mongo en el index.js
-mongoose.connect('mongodb://localhost:27017/planner-lite')
+mongoose.connect(MONGO_URI)
   .then(() => console.log('MongoDB conectado'))
   .catch(err => console.error('Error MongoDB:', err));
 
@@ -95,5 +100,5 @@ app.delete('/tasks/:id', async (req, res) => {
 //         Start server
 // -----------------------------
 app.listen(PORT, () => {
-  console.log(`Backend running on http://localhost:${PORT}`);
+  console.log(`Backend running on ${PORT}`);
 });
